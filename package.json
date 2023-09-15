@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "prettier": "^3.0.3",
+    "react-chatbot-kit": "^2.1.2"
+  }
+}
