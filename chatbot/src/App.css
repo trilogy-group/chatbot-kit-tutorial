@@ -5,7 +5,7 @@
 
 .left-partition {
   flex: 1;
-  background-color: #282c34;
+  background-color: #007BFF; /* Blue color */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,17 +20,18 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background-color: #61dafb;
+  background-color: #282c34; /* Dark background for the chatbox */
   padding: 20px;
+  color: white; /* White text color */
 }
 
 .message.sent {
   align-self: flex-end;
-  background-color: #0084ff; /* Blue for sent messages */
+  background-color: #1E90FF; /* Blue for sent messages */
   color: white;
   border-radius: 10px;
-  padding: 15px; /* Increase padding */
-  font-size: 1.2em; /* Increase font size */
+  padding: 10px; /* Increase padding */
+  font-size: 1em; /* Increase font size */
   margin-bottom: 10px;
   max-width: 80%;
   margin-left: 20%;
@@ -39,28 +40,20 @@
 
 .message.received {
   align-self: flex-start;
-  background-color: #f0f0f0; /* Light gray for received messages */
-  color: black;
+  background-color: #44475a; /* Darker gray for received messages */
+  color: white; /* White text color */
   border-radius: 10px;
-  padding: 15px; /* Increase padding */
-  font-size: 1.2em; /* Increase font size */
+  padding: 10px; /* Increase padding */
+  font-size: 1em; /* Increase font size */
   margin-bottom: 10px;
   max-width: 80%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.messages-container {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  flex: 1;
-  padding: 20px;
-}
-
 .input-container {
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: #44475a; /* Darker background for the input container */
   padding: 10px;
   border-radius: 20px;
   margin-top: 20px;
@@ -74,8 +67,17 @@ input {
   padding: 10px;
   font-size: 16px;
   border-radius: 10px;
+  background-color: #282c34; /* Dark background for the input field */
+  color: white; /* White text color */
 }
 
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex: 1;
+  padding: 20px;
+}
 .send-icon {
   padding: 10px;
   cursor: pointer;
@@ -108,4 +110,30 @@ input {
 
 .dot {
   animation: dot 1s infinite;
+}
+
+.thinking-box {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-family: monospace;
+}
+
+.final-answer-box {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #e6f7ff;
+  font-family: monospace;
+}
+
+.final-answer-container {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #e6f7ff;
 }

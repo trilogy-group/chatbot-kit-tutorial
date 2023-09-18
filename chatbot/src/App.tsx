@@ -13,18 +13,42 @@ const App: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const [ws, setWs] = useState<WebSocket | null>(null);
+  // const [finalAnswer, setFinalAnswer] = useState<string>("");
 
   useEffect(() => {
-    const websocket = new WebSocket("ws://your-websocket-endpoint");
+    const websocket = new WebSocket(
+      "wss://<id>"
+    );
     websocket.onopen = () => console.log("Connected to WS server");
     websocket.onmessage = (event) => {
-      setTimeout(() => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { type: "received", content: event.data },
-        ]);
-        setIsThinking(false);
-      }, 2000); // delay of 2 seconds
+      const data = JSON.parse(event.data);
+      if (data.op === "chat" && data.type === "message") {
+        setTimeout(() => {
+          setMessages((prevMessages) => {
+            // If there are no previous messages or the last message is sent by the user, create a new received message
+            if (
+              prevMessages.length === 0 ||
+              prevMessages[prevMessages.length - 1].type === "sent"
+            ) {
+              return [
+                ...prevMessages,
+                { type: "received", content: data.text },
+              ];
+            } else {
+              // Otherwise, append the token to the last received message
+              const newMessages = [...prevMessages];
+              const lastMessage = newMessages[newMessages.length - 1];
+              const updatedLastMessage = {
+                ...lastMessage,
+                content: lastMessage.content + data.text,
+              };
+              newMessages[newMessages.length - 1] = updatedLastMessage;
+              return newMessages;
+            }
+          });
+          setIsThinking(false);
+        }, 2000); // delay of 2 seconds
+      }
     };
     websocket.onclose = () => console.log("Disconnected from WS server");
     setWs(websocket);
@@ -32,7 +56,13 @@ const App: React.FC = () => {
 
   const sendMessage = () => {
     if (ws) {
-      ws.send(message);
+      ws.send(
+        JSON.stringify({
+          op: "chat",
+          type: "message",
+          text: message,
+        })
+      );
       setMessages((prevMessages) => [
         ...prevMessages,
         { type: "sent", content: message },
