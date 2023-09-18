@@ -1,11 +1,7 @@
 // ChatInput.tsx
 import React, { KeyboardEvent } from 'react';
+import { ChatInputProps } from '../interface';
 
-interface ChatInputProps {
-  message: string;
-  setMessage: (message: string) => void;
-  sendMessage: () => void;
-}
 
 const ChatInput: React.FC<ChatInputProps> = ({ message, setMessage, sendMessage }) => (
   <div className="input-container">

@@ -5,33 +5,33 @@
 
 .left-partition {
   flex: 1;
-  background-color: #007BFF; /* Blue color */
+  background-color: #6c757d;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  color: white;
+  color: #f8f9fa;
   padding: 20px;
   font-size: 2em;
   text-align: center;
+  position: relative; /* Add this */
 }
-
 .right-partition {
   flex: 3;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background-color: #282c34; /* Dark background for the chatbox */
+  background-color: #343a40;
   padding: 20px;
-  color: white; /* White text color */
+  color: #f8f9fa;
 }
 
 .message.sent {
   align-self: flex-end;
-  background-color: #1E90FF; /* Blue for sent messages */
-  color: white;
+  background-color: #102944;
+  color: #f8f9fa;
   border-radius: 10px;
-  padding: 10px; /* Increase padding */
-  font-size: 1em; /* Increase font size */
+  padding: 10px;
   margin-bottom: 10px;
   max-width: 80%;
   margin-left: 20%;
@@ -40,11 +40,10 @@
 
 .message.received {
   align-self: flex-start;
-  background-color: #44475a; /* Darker gray for received messages */
-  color: white; /* White text color */
+  background-color: #6c757d;
+  color: #f8f9fa;
   border-radius: 10px;
-  padding: 10px; /* Increase padding */
-  font-size: 1em; /* Increase font size */
+  padding: 10px;
   margin-bottom: 10px;
   max-width: 80%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -53,7 +52,7 @@
 .input-container {
   display: flex;
   align-items: center;
-  background-color: #44475a; /* Darker background for the input container */
+  background-color: #6c757d;
   padding: 10px;
   border-radius: 20px;
   margin-top: 20px;
@@ -67,8 +66,8 @@ input {
   padding: 10px;
   font-size: 16px;
   border-radius: 10px;
-  background-color: #282c34; /* Dark background for the input field */
-  color: white; /* White text color */
+  background-color: #343a40;
+  color: #f8f9fa;
 }
 
 .messages-container {
@@ -78,27 +77,26 @@ input {
   flex: 1;
   padding: 20px;
 }
+
 .send-icon {
   padding: 10px;
   cursor: pointer;
-  color: #282c34;
+  color: #343a40;
 }
 
 .thinking {
   align-self: flex-start;
-  background-color: #e0e0e0; /* Lighter gray for the box */
-  color: #333; /* Dark gray for the text */
+  background-color: #d3d3d3; /* Lighter gray */
+  color: #212529; /* Dark text for contrast */
   border-radius: 10px;
-  padding: 15px; /* Increase padding */
-  font-size: 1.2em; /* Increase font size */
+  padding: 15px;
   margin-bottom: 10px;
   max-width: 80%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0; /* Different background color */
-  border: 2px solid #333; /* Add a border */
+  border: 2px solid #212529;
 }
 
 @keyframes dot {
@@ -112,28 +110,29 @@ input {
   animation: dot 1s infinite;
 }
 
-.thinking-box {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  font-family: monospace;
+@keyframes spinner {
+  to {transform: rotate(360deg);}
 }
 
-.final-answer-box {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #e6f7ff;
-  font-family: monospace;
+.thinking::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spinner .6s linear infinite;
+  margin-right: 10px;
+  vertical-align: middle;
 }
-
-.final-answer-container {
-  margin-top: 20px;
+.beta-version {
+  position: absolute;
+  bottom: 0;
+  width: 95%;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #e6f7ff;
+  text-align: center;
+  background-color: #f8f9fa; /* Light gray */
+  color: #343a40; /* Dark text for contrast */
+  font-size: 14px;
 }

@@ -2,12 +2,9 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { MessageProps } from '../interface';
 
-interface MessageProps {
-  type: 'sent' | 'received';
-  content: string;
-}
-const Message: React.FC<MessageProps> = ({ type, content }) => (
+const Message: React.FC<MessageProps> = ({ type, content}) => (
   <div className={`message ${type}`}>
     <ReactMarkdown
       components={{
