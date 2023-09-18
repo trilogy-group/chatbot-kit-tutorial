@@ -4,13 +4,14 @@ import MessageList from "./components/MessageList";
 import ChatInput from "./components/ChatInput";
 import { useWebSocket } from "./hooks/useWebsocket";
 import { MessageProps } from "./interface";
+import { WS_ENDPOINT } from "./constants";
 
 const App: React.FC = () => {
   const [isThinking, setIsThinking] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const ws = useWebSocket(
-    "wss://..."
+    WS_ENDPOINT
   );
 
   useEffect(() => {
