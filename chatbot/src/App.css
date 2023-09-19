@@ -5,32 +5,33 @@
 
 .left-partition {
   flex: 1;
-  background-color: #282c34;
+  background-color: rgba(16, 41, 68, 0.8);
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  color: white;
+  color: #f8f9fa;
   padding: 20px;
   font-size: 2em;
   text-align: center;
+  position: relative; /* Add this */
 }
-
 .right-partition {
   flex: 3;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background-color: #61dafb;
+  background-color: #343a40;
   padding: 20px;
+  color: #f8f9fa;
 }
 
 .message.sent {
   align-self: flex-end;
-  background-color: #0084ff; /* Blue for sent messages */
-  color: white;
+  background-color: rgba(16, 41, 68, 0.5); /* 80% opacity */
+  color: #f8f9fa;
   border-radius: 10px;
-  padding: 15px; /* Increase padding */
-  font-size: 1.2em; /* Increase font size */
+  padding: 10px;
   margin-bottom: 10px;
   max-width: 80%;
   margin-left: 20%;
@@ -39,28 +40,19 @@
 
 .message.received {
   align-self: flex-start;
-  background-color: #f0f0f0; /* Light gray for received messages */
-  color: black;
+  background-color: #6c757d;
+  color: #f8f9fa;
   border-radius: 10px;
-  padding: 15px; /* Increase padding */
-  font-size: 1.2em; /* Increase font size */
+  padding: 10px;
   margin-bottom: 10px;
   max-width: 80%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.messages-container {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  flex: 1;
-  padding: 20px;
-}
-
 .input-container {
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: #6c757d;
   padding: 10px;
   border-radius: 20px;
   margin-top: 20px;
@@ -74,29 +66,37 @@ input {
   padding: 10px;
   font-size: 16px;
   border-radius: 10px;
+  background-color: #343a40;
+  color: #f8f9fa;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex: 1;
+  padding: 20px;
 }
 
 .send-icon {
   padding: 10px;
   cursor: pointer;
-  color: #282c34;
+  color: #343a40;
 }
 
 .thinking {
   align-self: flex-start;
-  background-color: #e0e0e0; /* Lighter gray for the box */
-  color: #333; /* Dark gray for the text */
+  background-color: #d3d3d3; /* Lighter gray */
+  color: #212529; /* Dark text for contrast */
   border-radius: 10px;
-  padding: 15px; /* Increase padding */
-  font-size: 1.2em; /* Increase font size */
+  padding: 15px;
   margin-bottom: 10px;
   max-width: 80%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0; /* Different background color */
-  border: 2px solid #333; /* Add a border */
+  border: 2px solid #212529;
 }
 
 @keyframes dot {
@@ -108,4 +108,44 @@ input {
 
 .dot {
   animation: dot 1s infinite;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.thinking::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spinner .6s linear infinite;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.beta-version {
+  position: absolute;
+  bottom: 0;
+  width: 95%;
+  padding: 10px;
+  text-align: center;
+  background-color: #f8f9fa; /* Light gray */
+  color: #343a40; /* Dark text for contrast */
+  font-size: 14px;
+}
+
+.connecting::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spinner .6s linear infinite;
+  margin-right: 10px;
+  vertical-align: middle;
 }
