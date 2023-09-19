@@ -5,7 +5,7 @@
 
 .left-partition {
   flex: 1;
-  background-color: #6c757d;
+  background-color: rgba(16, 41, 68, 0.8);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -28,7 +28,7 @@
 
 .message.sent {
   align-self: flex-end;
-  background-color: #102944;
+  background-color: rgba(16, 41, 68, 0.5); /* 80% opacity */
   color: #f8f9fa;
   border-radius: 10px;
   padding: 10px;
@@ -135,4 +135,17 @@ input {
   background-color: #f8f9fa; /* Light gray */
   color: #343a40; /* Dark text for contrast */
   font-size: 14px;
+}
+
+.connecting::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spinner .6s linear infinite;
+  margin-right: 10px;
+  vertical-align: middle;
 }

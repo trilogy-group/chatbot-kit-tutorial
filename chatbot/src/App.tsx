@@ -10,12 +10,19 @@ const App: React.FC = () => {
   const [isThinking, setIsThinking] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<MessageProps[]>([]);
-  const ws = useWebSocket(
-    WS_ENDPOINT
-  );
+  const [isConnected, setIsConnected] = useState<boolean>(false);
+
+  const ws = useWebSocket(WS_ENDPOINT);
 
   useEffect(() => {
     if (ws) {
+      setIsConnected(true);
+    } else {
+      setIsConnected(false);
+    }
+  }, [ws]);
+  useEffect(() => {
+    if (ws && isConnected) {
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
         if (data.op === "chat" && data.type === "message") {
@@ -48,10 +55,10 @@ const App: React.FC = () => {
         }
       };
     }
-  }, [ws]);
+  }, [ws, isConnected]);
 
   const sendMessage = () => {
-    if (ws) {
+    if (ws && isConnected) {
       ws.send(
         JSON.stringify({
           op: "chat",
@@ -79,6 +86,11 @@ const App: React.FC = () => {
       </div>
       <div className="right-partition">
         <MessageList messages={messages} isThinking={isThinking} />
+        {!isConnected && (
+          <div className="connecting">
+            <span>Connecting to server...</span>
+          </div>
+        )}
         <ChatInput
           message={message}
           setMessage={setMessage}
