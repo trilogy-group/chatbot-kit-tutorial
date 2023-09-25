@@ -42,6 +42,7 @@ const App: React.FC = () => {
               } else {
                 const newMessages = [...prevMessages];
                 const lastMessage = newMessages[newMessages.length - 1];
+                console.log(prevMessages);
                 const updatedLastMessage = {
                   ...lastMessage,
                   content: lastMessage.content + data.text,
@@ -64,6 +65,7 @@ const App: React.FC = () => {
           op: "chat",
           type: "message",
           text: message,
+          history: messages
         })
       );
       setMessages((prevMessages) => [
