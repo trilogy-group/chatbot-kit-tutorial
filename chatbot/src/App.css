@@ -4,6 +4,7 @@
 }
 
 .left-partition {
+  position: relative; /* Add this */
   flex: 1;
   background-color: rgba(16, 41, 68, 0.8);
   display: flex;
@@ -14,7 +15,6 @@
   padding: 20px;
   font-size: 2em;
   text-align: center;
-  position: relative; /* Add this */
 }
 .right-partition {
   flex: 3;
@@ -148,4 +148,15 @@ input {
   animation: spinner .6s linear infinite;
   margin-right: 10px;
   vertical-align: middle;
+}
+
+.chat-input-container {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+}
+
+.avatar-icon-container {
+  height: 90%;
+  width: 50%;
 }
